@@ -17,9 +17,9 @@
     <header id="page-header">
       <h1>Eurovision Voting Patterns</h1>
       <div id="research-questions">
-        <div class="rq">Q1 — Which pairs show <b>persistent support</b> over time?</div>
-        <div class="rq">Q2 — Which relationships <b>changed the most</b>?</div>
-        <div class="rq">Q3 — Where do <b>jury and public diverge</b>?</div>
+        <button class="rq" id="rq1" type="button">Q1 — Which pairs show <b>persistent support</b> over time?</button>
+        <button class="rq" id="rq2" type="button">Q2 — Which relationships <b>changed the most</b>?</button>
+        <button class="rq" id="rq3" type="button">Q3 — Where do <b>jury and public diverge</b>?</button>
       </div>
     </header>
 
@@ -56,7 +56,23 @@
         </div>
         <div>
           <h3>Selection</h3>
-          <div id="selection-info">Click a matrix cell to select a country pair.</div>
+          <div id="selection-info">Click a matrix cell or map country to explore.</div>
+        </div>
+        <div id="insights-section" style="display:none">
+          <h3 id="insights-title">Top findings</h3>
+          <div id="insights-list"></div>
+          <div id="pairs-browser" style="display:none">
+            <div class="pb-controls">
+              <input id="pb-search" type="search" placeholder="Filter by country">
+              <button id="pb-back" type="button" class="btn-mini">Back</button>
+            </div>
+            <div class="pb-header">
+              <span class="pb-col-name">Pair</span>
+              <span id="pb-sort-support" class="pb-sort pb-sort-active">Support ▾</span>
+              <span id="pb-sort-years" class="pb-sort">Yrs</span>
+            </div>
+            <div id="pb-rows"></div>
+          </div>
         </div>
       </div>
 
