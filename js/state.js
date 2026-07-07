@@ -4,6 +4,7 @@ export const state= {
   round: 'final',
   sortMode: 'cluster',
   edgeThreshold: 0,
+  yearsActive: 1,
   regionFilter: null,
   countrySearch: '',
   selectedCountry: null,

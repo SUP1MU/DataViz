@@ -44,7 +44,7 @@ let _csMapCache= null;
 let _csCacheKey= '';
 
 function _filterKey(state) {
-  return `${state.yearRange[0]}|${state.yearRange[1]}|${state.voteType}|${state.round}`;
+  return `${state.yearRange[0]}|${state.yearRange[1]}|${state.voteType}|${state.round}|${state.yearsActive ?? 1}`;
 }
 
 export function getFilteredPairs(state) {
@@ -53,15 +53,19 @@ export function getFilteredPairs(state) {
   _pairsCacheKey= key;
 
   const { yearRange, voteType, round }= state;
+  const minYears= state.yearsActive ?? 1;
+
   if (_matchesBucket(state)) {
     _pairsCache= db.pairSummary.filter(p =>
       p.yearRange[0] === yearRange[0] &&
       p.yearRange[1] === yearRange[1] &&
       p.voteType === voteType &&
-      p.round === round
+      p.round === round &&
+      p.years_active >= minYears
     );
   } else {
-    _pairsCache= _computeFromEdges(db.edgesAll, yearRange, voteType, round);
+    _pairsCache= _computeFromEdges(db.edgesAll, yearRange, voteType, round)
+      .filter(p => p.years_active >= minYears);
   }
   return _pairsCache;
 }

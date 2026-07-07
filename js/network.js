@@ -103,6 +103,7 @@ function _dataKey() {
     state.yearRange[0], state.yearRange[1],
     state.voteType, state.round,
     state.edgeThreshold,
+    state.yearsActive ?? 1,
     state.regionFilter || '',
     state.countrySearch || '',
   ].join('|');

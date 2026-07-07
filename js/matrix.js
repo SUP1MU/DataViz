@@ -38,6 +38,7 @@ function _layoutKey() {
     state.yearRange[0], state.yearRange[1],
     state.voteType, state.round, state.sortMode,
     state.regionFilter || '', state.countrySearch || '',
+    state.yearsActive ?? 1,
   ].join('|');
 }
 

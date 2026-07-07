@@ -57,6 +57,22 @@ export function init() {
     }
   });
 
+  const [yearsWrap, yearsVal]= _slider('years-active', 1, 10, 1, state.yearsActive);
+  let _yearsRaf= null;
+  let _yearsPending= state.yearsActive;
+  yearsWrap.querySelector('input').addEventListener('input', e => {
+    const v= +e.target.value;
+    yearsVal.textContent= v === 1 ? 'any' : v+'+';
+    _yearsPending= v;
+    if (_yearsRaf == null) {
+      _yearsRaf= requestAnimationFrame(() => {
+        _yearsRaf= null;
+        update({ yearsActive: _yearsPending });
+      });
+    }
+  });
+  yearsVal.textContent= 'any';
+
   const regionSel= _select('region-filter',
     [['', 'All regions'], ...allRegions.map(r => [r, r])]
   );
@@ -154,7 +170,9 @@ export function init() {
   strip.appendChild(_sep());
   strip.appendChild(_group('Sort', sortSel));
   strip.appendChild(_sep());
-  strip.appendChild(_group('Min support', threshWrap));
+  strip.appendChild(_group('Mean support', threshWrap));
+  strip.appendChild(_sep());
+  strip.appendChild(_group('Min years', yearsWrap));
   strip.appendChild(_sep());
   strip.appendChild(_group('Region', regionSel));
   strip.appendChild(_sep());
