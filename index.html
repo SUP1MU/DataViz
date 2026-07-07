@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eurovision Voting Patterns · Graph Drawing Contest 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loading">Loading data…</div>
+
+  <div id="app">
+
+    <header id="page-header">
+      <h1>Eurovision Voting Patterns</h1>
+      <div id="research-questions">
+        <div class="rq">Q1 — Which pairs show <b>persistent support</b> over time?</div>
+        <div class="rq">Q2 — Which relationships <b>changed the most</b>?</div>
+        <div class="rq">Q3 — Where do <b>jury and public diverge</b>?</div>
+      </div>
+    </header>
+
+    <div id="controls-strip">
+      <!-- populated by js/controls.js -->
+    </div>
+
+    <div id="views-grid">
+
+      <div id="matrix-wrap" class="view-wrap">
+        <div class="view-title">Adjacency Matrix — Q1, Q2, Q3</div>
+        <div id="matrix" class="view-container"></div>
+      </div>
+
+      <div id="map-wrap" class="view-wrap">
+        <div class="view-title">Geographic Map — Q1, Q2</div>
+        <div id="map" class="view-container"></div>
+      </div>
+
+      <div id="network-wrap" class="view-wrap">
+        <div class="view-title">Force Network — Q1, Q2</div>
+        <div id="network" class="view-container"></div>
+      </div>
+
+      <div id="timeline-wrap" class="view-wrap">
+        <div class="view-title">Pair Timeline — Q2, Q3</div>
+        <div id="timeline" class="view-container"></div>
+      </div>
+
+      <div id="details-panel">
+        <div>
+          <h3>Legend</h3>
+          <div id="legend"></div>
+        </div>
+        <div>
+          <h3>Selection</h3>
+          <div id="selection-info">Click a matrix cell to select a country pair.</div>
+        </div>
+      </div>
+
+    </div><!-- #views-grid -->
+  </div><!-- #app -->
+
+  <!-- D3 v7 and topojson-client must load before the module -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
